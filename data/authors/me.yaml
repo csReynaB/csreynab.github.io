@@ -26,7 +26,7 @@ links:
     url: "https://github.com/csReynaB"
   - icon: "brands/linkedin"
     url: "https://www.linkedin.com/in/csreynab"
-  - icon: brands/bitbucket
+  - icon: "brands/bitbucket"
     url: "https://bitbucket.org/wegmannlab/treeswirl/wiki/Home"
   - icon: "academicons/google-scholar"
     url: "https://scholar.google.com/citations?user=fGA7sS0AAAAJ&hl=en"
