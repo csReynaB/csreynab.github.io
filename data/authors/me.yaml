@@ -16,7 +16,8 @@ status:
 role: "Postdoctoral Research Scientist"
 bio: "Postdoctoral researcher developing computational and machine learning methods for antibody repertoire analysis (PhIP-Seq) and biomarker discovery in inflammatory and malignant diseases.\n"
 affiliations:
-  - name: "Center for Cancer Research, Medical University of Vienna"
+  - name: "Center for Cancer Research"
+  - name: "Medical University of Vienna"
     url: "https://krebsforschung.meduniwien.ac.at/en/focus/tumor-biology/vogl-lab/research-projects/"
 links:
   - icon: "at-symbol"
