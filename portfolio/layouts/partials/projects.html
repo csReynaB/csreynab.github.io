@@ -1,0 +1,15 @@
+<div class="project-grid">
+  {{ range (where site.RegularPages "Section" "projects").ByWeight }}
+  <article class="project-card">
+    <a class="project-link" href="{{ .RelPermalink }}" aria-label="Read case study: {{ .Title }}">
+      <div class="card-art"><img src="{{ printf "assets/art/%s" .Params.image | relURL }}" width="1000" height="553" alt="{{ .Params.imageAlt }}" loading="lazy" decoding="async"></div>
+      <div class="card-text">
+        <p class="category">{{ .Params.category }}</p>
+        <h3>{{ .Title }}</h3>
+        <p class="card-desc">{{ .Description }}</p>
+        <p class="card-more">{{ partial "icon.html" "book" }}<span>Read case study</span></p>
+      </div>
+    </a>
+  </article>
+  {{ end }}
+</div>

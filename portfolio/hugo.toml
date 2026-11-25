@@ -1,0 +1,15 @@
+baseURL = "https://csreynab.github.io/"
+languageCode = "en"
+title = "Carlos S. Reyna Blanco"
+publishDir = "dist"
+disableKinds = ["taxonomy", "term", "RSS"]
+enableRobotsTXT = true
+
+[params]
+  description = "Carlos S. Reyna Blanco, PhD, is a computational biologist and data scientist in Vienna working on antibody profiling, cancer research, and human population genomics."
+  email = "csreynab@gmail.com"
+  github = "https://github.com/csReynaB"
+  linkedin = "https://www.linkedin.com/in/csreynab/"
+  scholar = "https://scholar.google.com/citations?user=fGA7sS0AAAAJ&hl=en"
+  orcid = "https://orcid.org/0000-0002-7104-1446"
+  cv = "downloads/Carlos_Reyna_Blanco_CV.pdf"

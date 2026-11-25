@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="wrap detail">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ site.Home.RelPermalink }}#projects">{{ partial "icon.html" "grid" }}Selected projects</a><span aria-hidden="true">/</span><span>{{ .Params.category }}</span></nav>
+  <div class="detail-top"><div><p class="eyeline"><span></span>{{ .Params.category }}</p><h1>{{ .Title }}</h1><p class="detail-intro">{{ .Description }}</p></div><figure><img src="{{ printf "assets/art/%s" .Params.image | relURL }}" width="1000" height="553" alt="{{ .Params.imageAlt }}"></figure></div>
+  <div class="detail-body">
+    <aside class="case-meta"><dl><div><dt>Institution</dt><dd>{{ .Params.context }}</dd></div><div><dt>Contribution</dt><dd>{{ .Params.role }}</dd></div><div><dt>Methods</dt><dd class="method-list">{{ range .Params.methods }}<span>{{ . }}</span>{{ end }}</dd></div></dl></aside>
+    <div class="prose">{{ .Content }}<h2>Code &amp; reading</h2><div class="resource-list">{{ range .Params.resources }}<a class="button secondary" href="{{ .url }}">{{ partial "icon.html" .icon }}{{ .label }}</a>{{ end }}</div></div>
+  </div>
+  <div class="detail-end"><a class="quiet-link" href="{{ site.Home.RelPermalink }}#projects">{{ partial "icon.html" "grid" }}All selected projects</a></div>
+</article>
+{{ end }}

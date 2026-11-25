@@ -1,0 +1,7 @@
+{{ define "main" }}
+<section class="wrap archive">
+  <p class="eyeline"><span></span>Research &amp; software</p>
+  <h1>{{ .Title }}</h1><p class="detail-intro">{{ .Description }}</p>
+  {{ partial "projects.html" . }}
+</section>
+{{ end }}

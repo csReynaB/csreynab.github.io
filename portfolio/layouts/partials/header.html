@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">{{ partial "icon.html" "mark" }}<span>Carlos Reyna Blanco</span></a>
+    <button type="button" class="mobile-menu" aria-expanded="false" aria-controls="site-nav">
+      <span class="menu-closed">{{ partial "icon.html" "menu" }}</span><span class="menu-open">{{ partial "icon.html" "close" }}</span><span class="sr-only">Navigation menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="{{ site.Home.RelPermalink }}#projects">Projects</a>
+      <a href="{{ site.Home.RelPermalink }}#experience">Experience</a>
+      {{ range slice (dict "path" "publications" "label" "Publications") (dict "path" "courses" "label" "Courses") (dict "path" "notes" "label" "Notes") }}
+        <a href="{{ printf "%s/" .path | relURL }}"{{ if eq $.Section .path }} aria-current="page"{{ end }}>{{ .label }}</a>
+      {{ end }}
+      <a href="{{ site.Home.RelPermalink }}#about">About</a>
+      <a class="head-contact" href="{{ site.Home.RelPermalink }}#contact">{{ partial "icon.html" "mail" }}<span>Get in touch</span></a>
+    </nav>
+  </div>
+</header>

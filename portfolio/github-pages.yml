@@ -1,0 +1,52 @@
+name: Deploy the CV portfolio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'portfolio/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the Pages URL
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Install Hugo 0.145.0
+        run: |
+          mkdir -p "$RUNNER_TEMP/portfolio-hugo"
+          cd "$RUNNER_TEMP/portfolio-hugo"
+          curl --fail --location --retry 3 --output hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.145.0/hugo_0.145.0_linux-amd64.tar.gz
+          echo "5be7b7d5026d01515685a8aad1ca015133c0569688819f139ae9fb21e33fd9aa  hugo.tar.gz" | sha256sum --check
+          tar -xzf hugo.tar.gz hugo
+      - name: Build the portfolio
+        env:
+          PAGES_BASE: ${{ steps.pages.outputs.base_url }}
+        run: '"$RUNNER_TEMP/portfolio-hugo/hugo" --source portfolio --minify --baseURL "${PAGES_BASE%/}/"'
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: portfolio/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
