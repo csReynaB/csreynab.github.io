@@ -1,0 +1,70 @@
+{{ define "main" }}
+<div class="wrap">
+  <section class="hero" aria-labelledby="intro-title">
+    <div class="hero-intro">
+      <p class="location">{{ partial "icon.html" "pin" }}<span>Vienna, Austria</span><span class="hero-degree">PhD<span class="degree-field"> in Bioinformatics</span></span></p>
+      <h1 id="intro-title">Carlos S.<br><em>Reyna Blanco</em></h1>
+      <p class="profession">Computational biologist &amp; data scientist</p>
+      <p class="hero-copy">I build open-source tools to study immune responses in cancer and trace human ancestry.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#projects">{{ partial "icon.html" "grid" }}<span>View projects</span></a>
+        <a class="button secondary" href="{{ site.Params.cv | relURL }}" download>{{ partial "icon.html" "download" }}<span>Download CV</span></a>
+      </div>
+      <div class="social-row" aria-label="Professional profiles">
+        <a href="{{ site.Params.linkedin }}">{{ partial "icon.html" "linkedin" }}LinkedIn</a>
+        <a href="{{ site.Params.github }}">{{ partial "icon.html" "github" }}GitHub</a>
+        <a href="{{ site.Params.scholar }}">{{ partial "icon.html" "scholar" }}Google Scholar</a>
+        <a href="{{ site.Params.orcid }}">{{ partial "icon.html" "orcid" }}ORCID</a>
+      </div>
+    </div>
+    <figure class="signal" aria-labelledby="signal-caption">
+      <div class="plot">
+        <i class="crop top-left" aria-hidden="true"></i><i class="crop top-right" aria-hidden="true"></i><i class="crop bottom-left" aria-hidden="true"></i><i class="crop bottom-right" aria-hidden="true"></i>
+        <img class="plot-image" id="signal-image" src="{{ "assets/art/signal-surface.webp" | relURL }}" width="1280" height="840" alt="A cobalt wireframe surface showing peaks in a simulated signal." fetchpriority="high">
+      </div>
+      <figcaption id="signal-caption">
+        <div class="plot-caption">{{ partial "icon.html" "wave" }}<span>Signal landscape<small>Simulated data</small></span></div>
+        <div class="plot-tools" role="group" aria-label="Plot view">
+          <button type="button" class="plot-button" data-src="{{ "assets/art/signal-surface.webp" | relURL }}" data-alt="A cobalt wireframe surface showing peaks in a simulated signal." aria-label="Surface view" title="Surface view" aria-pressed="true">{{ partial "icon.html" "surface" }}</button>
+          <button type="button" class="plot-button" data-src="{{ "assets/art/signal-contours.webp" | relURL }}" data-alt="A top-down contour map of the same simulated signal. Nested blue lines mark peaks." aria-label="Contour view" title="Contour view" aria-pressed="false">{{ partial "icon.html" "contours" }}</button>
+        </div>
+      </figcaption>
+    </figure>
+  </section>
+  <section id="projects" class="section projects" aria-labelledby="projects-title">
+    <div class="sec-heading">
+      <div><p class="eyeline"><span></span>Research &amp; software</p><h2 id="projects-title">Selected projects</h2></div>
+      <a class="quiet-link" href="{{ site.Params.github }}">{{ partial "icon.html" "github" }}<span>More on GitHub</span></a>
+    </div>
+    {{ partial "projects.html" . }}
+  </section>
+  <section id="experience" class="section divided" aria-labelledby="experience-title">
+    <div class="section-side"><h2 id="experience-title">Experience</h2><a class="quiet-link" href="{{ site.Params.cv | relURL }}" download>{{ partial "icon.html" "download" }}Full CV (PDF)</a></div>
+    <ol class="timeline">
+      {{ range site.Data.resume.experience }}
+      <li class="job">
+        <p class="dates">{{ .dates }}</p><h3>{{ .role }}</h3><p class="organization">{{ .organization }}</p><p class="job-meta">{{ .group }} <span>·</span> {{ .place }}</p><p class="job-description">{{ .description }}</p>
+      </li>
+      {{ end }}
+    </ol>
+  </section>
+  <section id="publications" class="section publications" aria-labelledby="publications-title">
+    <div class="sec-heading"><div><p class="eyeline"><span></span>Peer-reviewed research</p><h2 id="publications-title">Selected publications</h2></div><a class="quiet-link" href="{{ "publications/" | relURL }}">{{ partial "icon.html" "list" }}<span>All publications &amp; manuscripts</span></a></div>
+    <ol class="publication-list">
+      {{ range site.Data.resume.publications }}
+      <li><a href="{{ .url }}" class="publication"><span class="pub-year">{{ .year }}</span><div class="pub-info"><h3>{{ .title }}</h3><p>{{ .journal }} <span>·</span> {{ .role }}</p></div><span class="paper-icon" aria-hidden="true">{{ partial "icon.html" "book" }}</span></a></li>
+      {{ end }}
+    </ol>
+  </section>
+  <section id="about" class="section about" aria-labelledby="about-title">
+    <div class="bio">
+      <div class="photo-wrap"><img src="{{ "assets/carlos-reyna-blanco.webp" | relURL }}" alt="Carlos S. Reyna Blanco" width="680" height="680" loading="lazy"></div>
+      <div class="bio-copy"><h2 id="about-title">About me</h2><p>I trained in genomics in Mexico, moved to Switzerland to study how human populations mix, and then brought those methods to cancer and immunology research in Vienna.</p><p>I enjoy working alongside clinicians and experimental scientists, especially when a question calls for both a statistical model and a piece of software someone else can use.</p><p class="languages"><strong>Languages</strong> Spanish (native), English (fluent), French (B2.1), German (B1.1).</p></div>
+    </div>
+    <div class="credentials">
+      <div id="education"><h3>Education</h3><ol class="education-list">{{ range site.Data.resume.education }}<li><span class="dates">{{ .dates }}</span><p>{{ .degree }}</p><small>{{ .school }}</small></li>{{ end }}</ol></div>
+      <div id="skills"><h3>Technical skills</h3><dl class="skills-list">{{ range site.Data.resume.skills }}<div><dt>{{ .group }}</dt><dd>{{ .items }}</dd></div>{{ end }}</dl></div>
+    </div>
+  </section>
+</div>
+{{ end }}

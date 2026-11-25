@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- $pageTitle := cond .IsHome "Carlos S. Reyna Blanco, PhD | Computational Biology & Data Science" (printf "%s | %s" .Title site.Title) }}
+  {{- $description := .Description | default site.Params.description }}
+  <title>{{ $pageTitle }}</title>
+  <meta name="description" content="{{ $description }}">
+  <meta name="author" content="Carlos S. Reyna Blanco">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ $pageTitle }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ "assets/social-card.jpg" | absURL }}">
+  <meta property="og:image:alt" content="Carlos S. Reyna Blanco, computational biologist and data scientist in Vienna.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="{{ "assets/favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="preload" href="{{ "assets/fonts/instrument-serif-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ "assets/site.css" | relURL }}">
+  <script defer src="{{ "assets/site.js" | relURL }}"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{ partial "icons.html" . }}
+  {{ partial "header.html" . }}
+  <main id="main">{{ block "main" . }}{{ end }}</main>
+  {{ partial "footer.html" . }}
+</body>
+</html>
